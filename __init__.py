@@ -18,6 +18,10 @@ class Tickers(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(), nullable=False)
 
+class Groups(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(), nullable=False)
+
 
 db.create_all()
 
@@ -30,10 +34,15 @@ class TickerResource(ModelResource):
     class Meta:
         model = Tickers
 
+class GroupResource(ModelResource):
+    class Meta:
+        model = Groups
+
 
 api = Api(app)
 api.add_resource(DashboardResource)
 api.add_resource(TickerResource)
+api.add_resource(GroupResource)
 
 if __name__ == '__main__':
     app.run()
